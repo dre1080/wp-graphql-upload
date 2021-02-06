@@ -18,7 +18,7 @@ jobs:
           tools: composer:v2
 
       - name: Install SVN
-        run: apt update && apt install -y subversion wget
+        run: sudo apt-get update && sudo apt-get install -y subversion wget
 
       - name: Install WP-CLI
         run: |
