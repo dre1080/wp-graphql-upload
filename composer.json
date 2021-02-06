@@ -2,13 +2,13 @@
   "name": "dre1080/wp-graphql-upload",
   "description": "Adds file upload support to the WP GraphQL Plugin.",
   "type": "wordpress-plugin",
+  "license": "GPL-3.0-or-later",
   "keywords": [
     "wordpress",
     "graphql",
     "wp-graphql",
     "upload"
   ],
-  "license": "MIT",
   "authors": [
     {
       "name": "ando",
@@ -23,7 +23,7 @@
     }
   },
   "require": {
-    "php": ">=5.4.0"
+    "php": "^7"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
