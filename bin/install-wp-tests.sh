@@ -121,12 +121,12 @@ install_wpgraphql() {
 configure_wordpress() {
     cd $WP_CORE_DIR
 
-    wp config create --dbname="$DB_NAME" --dbuser=root --dbpass="$DB_PASS" --dbhost="$DB_HOST" --skip-check --force=true
-    wp config set DB_DIR $TMPDIR/
+    wp --allow-root config create --dbname="$DB_NAME" --dbuser=root --dbpass="$DB_PASS" --dbhost="$DB_HOST" --skip-check --force=true
+    wp --allow-root config set DB_DIR $TMPDIR/
 
-    wp core install --url=wpgraphql.test --title="WPGraphQL Upload Tests" --admin_user=admin --admin_password=password --admin_email=admin@wpgraphql.test
+    wp --allow-root core install --url=wpgraphql.test --title="WPGraphQL Upload Tests" --admin_user=admin --admin_password=password --admin_email=admin@wpgraphql.test
 
-    wp rewrite structure '/%postname%/'
+    wp --allow-root rewrite structure '/%postname%/'
 }
 
 activate_plugins() {
@@ -136,11 +136,11 @@ activate_plugins() {
     cd $WP_CORE_DIR
 
     # activate the plugin
-    wp plugin activate wp-graphql
-    wp plugin activate wp-graphql-upload
+    wp --allow-root plugin activate wp-graphql
+    wp --allow-root plugin activate wp-graphql-upload
 
     # Flush the permalinks
-    wp rewrite flush
+    wp --allow-root rewrite flush
 }
 
 install_wp
