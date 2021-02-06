@@ -8,13 +8,13 @@ Using this plugin requires having the [WPGraphQL plugin](https://github.com/wp-g
 
 ## Activating / Using
 
-Activate the plugin like you would any other WordPress plugin.
+You can install and activate the plugin like any WordPress plugin. Download the .zip from Github and add to your plugins directory, then activate.
 
 Once the plugin is active, the `Upload` scalar type will be available to your mutation input fields.
 
 If you're using composer:
 
-```
+```sh
 composer require dre1080/wp-graphql-upload
 ```
 
