@@ -43,14 +43,14 @@ register_graphql_mutation(
               require_once(ABSPATH . 'wp-admin/includes/file.php');
           }
 
-          \wp_handle_sideload($input['file'], [
+          wp_handle_sideload($input['file'], [
               'test_form' => false,
               'test_type' => false,
           ]);
 
-          $text = 'Uploaded file was "' . $input['file']['name'] . '" ('. $input['file']['type']  .').';
-
-          return ['text' => $text];
+          return [
+              'text' => 'Uploaded file was "' . $input['file']['name'] . '" (' . $input['file']['type'] . ').',
+          ];
       }
   ]
 );
