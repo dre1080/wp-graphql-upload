@@ -17,20 +17,15 @@
   ],
   "config": {
     "optimize-autoloader": true,
-    "sort-packages": true,
-    "platform": {
-      "php": "7.4"
-    }
-  },
-  "require": {
-    "php": "^7"
+    "sort-packages": true
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
     "phpcompatibility/phpcompatibility-wp": "*",
     "phpunit/phpunit": "^7",
     "squizlabs/php_codesniffer": "*",
-    "webonyx/graphql-php": "^14.5"
+    "webonyx/graphql-php": "^14.5",
+    "yoast/phpunit-polyfills": "^1.0"
   },
   "autoload": {
     "psr-4": {

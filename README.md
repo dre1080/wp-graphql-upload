@@ -55,3 +55,17 @@ register_graphql_mutation(
   ]
 );
 ```
+
+## Testing
+
+Requirements:
+
+- [svn](https://subversion.apache.org/)
+- [wp-cli](https://wp-cli.org/)
+
+To run the tests, run the following commands:
+
+```sh
+bin/install-wp-tests.sh
+vendor/bin/phpunit
+```

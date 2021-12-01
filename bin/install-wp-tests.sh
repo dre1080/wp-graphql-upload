@@ -110,12 +110,14 @@ install_test_suite() {
 		WP_CORE_DIR=$(echo $WP_CORE_DIR | sed "s:/\+$::")
 		sed $ioption "s:dirname( __FILE__ ) . '/src/':'$WP_CORE_DIR/':" "$WP_TESTS_DIR"/wp-tests-config.php
 	fi
-
 }
 
 install_wpgraphql() {
 	echo "Cloning WPGraphQL"
 	git clone https://github.com/wp-graphql/wp-graphql.git $WP_CORE_DIR/wp-content/plugins/wp-graphql
+
+  cd $WP_CORE_DIR/wp-content/plugins/wp-graphql
+  composer install
 }
 
 configure_wordpress() {
