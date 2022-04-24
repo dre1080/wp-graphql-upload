@@ -21,7 +21,7 @@ class Upload
      *
      * @var array
      */
-    public static $validationFileKeys = ['name', 'type', 'size', 'tmp_name'];
+    public static $validationFileKeys = ['name', 'type', 'size'];
 
     /**
      * Register the scalar Upload type.
@@ -65,6 +65,12 @@ class Upload
     {
         if (!static::arrayKeysExist($value, static::$validationFileKeys)) {
             throw new UnexpectedValueException('Could not get uploaded file, be sure to conform to GraphQL multipart request specification. Instead got: ' . Utils::printSafe($value));
+        }
+
+        // If not supplied, use the server's temp directory.
+        if(empty($value['tmp_name'])) {
+          $tmp_dir = get_temp_dir();
+          $value['tmp_name'] = $tmp_dir . wp_unique_filename($tmp_dir, $value['name']);
         }
 
         return $value;
