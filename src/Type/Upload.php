@@ -68,7 +68,7 @@ class Upload
         }
 
         // If not supplied, use the server's temp directory.
-        if(empty($value['tmp_name'])) {
+        if (empty($value['tmp_name'])) {
           $tmp_dir = get_temp_dir();
           $value['tmp_name'] = $tmp_dir . wp_unique_filename($tmp_dir, $value['name']);
         }
