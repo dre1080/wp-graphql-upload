@@ -7,7 +7,7 @@ use WPGraphQL\Upload\Request\BodyParser;
 
 class BodyParserTest extends \WP_UnitTestCase
 {
-    public function tearDown()
+    public function tearDown() : void
     {
         unset($_SERVER['CONTENT_TYPE'], $_FILES);
     }
@@ -29,7 +29,7 @@ class BodyParserTest extends \WP_UnitTestCase
         ];
 
         $file1 = ['name' => 'image.jpg', 'type' => 'image/jpeg', 'size' => 1455000, 'tmp_name' => '/tmp/random'];
-        $file2 = ['name' => 'foo.txt', 'type' => 'text/plain', 'size' => 945000, 'tmp_name' => '/tmp/random2'];
+        $file2 = ['name' => 'foo.txt', 'type' => 'text/plain', 'size' => 945000]; // test without tmp_name.
         $_FILES = [
             1 => $file1,
             2 => $file2,

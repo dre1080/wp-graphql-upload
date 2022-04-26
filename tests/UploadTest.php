@@ -17,6 +17,16 @@ class UploadTest extends \WP_UnitTestCase
         $this->assertSame($file, $actual);
     }
 
+    public function testCanParseUploadedFileInstanceWithoutTmpName(): void
+    {
+        $file = ['name' => 'image.jpg', 'type' => 'image/jpeg', 'size' => 1455000];
+        $actual = Upload::parseValue($file);
+        $this->assertEquals($file['name'], $actual['name']);
+        $this->assertEquals($file['type'], $actual['type']);
+        $this->assertEquals($file['size'], $actual['size']);
+        $this->assertStringContainsString(get_temp_dir(),$actual['tmp_name']);
+    }
+
     public function testCannotParseNonUploadedFileInstance(): void
     {
         $this->expectException(UnexpectedValueException::class);
