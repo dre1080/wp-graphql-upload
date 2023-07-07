@@ -30,7 +30,11 @@ class Upload
     {
         add_action('graphql_register_types', function ($typeRegistry) {
             $typeRegistry->register_scalar('Upload', [
-                'description'  => 'The `Upload` special type represents a file to be uploaded in the same HTTP request as specified by [graphql-multipart-request-spec](https://github.com/jaydenseric/graphql-multipart-request-spec).',
+                'description'  => sprintf(
+                    // translators: %s is a link to the graphql-multipart-request-spec repo
+                    __( 'The `Upload` special type represents a file to be uploaded in the same HTTP request as specified by [graphql-multipart-request-spec](%s).', 'wp-graphql-upload' ),
+                    'https://github.com/jaydenseric/graphql-multipart-request-spec'
+                ),
                 'serialize'    => function ($value) {
                     return static::serialize($value);
                 },
