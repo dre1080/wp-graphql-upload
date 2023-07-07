@@ -34,9 +34,9 @@ class BodyParser
      */
     public static function processRequest(array $bodyParams, array $requestContext)
     {
-        $contentType = $_SERVER['CONTENT_TYPE'] ?? null;
+        $contentType = isset($_SERVER['CONTENT_TYPE']) ? sanitize_text_field( wp_unslash( $_SERVER['CONTENT_TYPE'] ) ) : '';
 
-        if ($requestContext['method'] === 'POST' && stripos($contentType, 'multipart/form-data') !== false) {
+        if ('POST' === $requestContext['method'] && stripos($contentType, 'multipart/form-data') !== false) {
             if (empty($bodyParams['map'])) {
                 throw new RequestError('The request must define a `map`');
             }
@@ -49,7 +49,7 @@ class BodyParser
                 return json_decode(stripslashes($json), true);
             };
 
-            $map = $decodeJson($bodyParams['map']);
+            $map    = $decodeJson($bodyParams['map']);
             $result = $decodeJson($bodyParams['operations']);
 
             foreach ($map as $fileKey => $locations) {
