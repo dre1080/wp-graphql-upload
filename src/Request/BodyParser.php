@@ -18,7 +18,7 @@ class BodyParser
      */
     public static function init()
     {
-        add_filter('graphql_request_data', [__CLASS__, 'processRequest'], 10, 2);
+        add_filter('graphql_request_data', [static::class, 'processRequest'], 10, 2);
     }
 
     /**
