@@ -30,11 +30,11 @@ class Upload
     {
         add_action('graphql_register_types', function ($typeRegistry) {
             $typeRegistry->register_scalar('Upload', [
-                'description' => 'The `Upload` special type represents a file to be uploaded in the same HTTP request as specified by [graphql-multipart-request-spec](https://github.com/jaydenseric/graphql-multipart-request-spec).',
-                'serialize' => function ($value) {
+                'description'  => 'The `Upload` special type represents a file to be uploaded in the same HTTP request as specified by [graphql-multipart-request-spec](https://github.com/jaydenseric/graphql-multipart-request-spec).',
+                'serialize'    => function ($value) {
                     return static::serialize($value);
                 },
-                'parseValue' => function ($value) {
+                'parseValue'   => function ($value) {
                     return static::parseValue($value);
                 },
                 'parseLiteral' => function ($value, array $variables = null) {
@@ -78,10 +78,10 @@ class Upload
      *   upload(file: ".......")
      * }
      *
-     * @param GraphQLLanguageASTNode $valueNode
+     * @param \WPGraphQL\Upload\Type\GraphQLLanguageASTNode $valueNode
      * @param array|null $variables
      * @return string
-     * @throws Error
+     * @throws \GraphQL\Error\Error
      */
     public static function parseLiteral($value, array $variables = null)
     {
