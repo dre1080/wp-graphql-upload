@@ -41,7 +41,7 @@ class BodyParser
                 throw new RequestError('The request must define a `map`');
             }
 
-            $decodeJson = function ($json) {
+            $decodeJson = static function ($json) {
                 if (!is_string($json)) {
                     return $json;
                 }
