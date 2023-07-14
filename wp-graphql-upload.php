@@ -25,10 +25,10 @@ namespace WPGraphQL;
 $autoload = __DIR__ . '/vendor/autoload.php';
 
 if (file_exists($autoload)) {
-    require_once($autoload);
+    require_once $autoload;
 } else {
-    require_once(__DIR__ . '/src/Request/BodyParser.php');
-    require_once(__DIR__ . '/src/Type/Upload.php');
+    require_once __DIR__ . '/src/Request/BodyParser.php';
+    require_once __DIR__ . '/src/Type/Upload.php';
 }
 
-require_once(__DIR__ . '/init.php');
+require_once __DIR__ . '/init.php';
