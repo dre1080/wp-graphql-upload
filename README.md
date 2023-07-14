@@ -3,8 +3,9 @@
 This plugin adds Upload support to the [WPGraphQL plugin](https://github.com/wp-graphql/wp-graphql) as specified by [graphql-multipart-request-spec](https://github.com/jaydenseric/graphql-multipart-request-spec).
 
 ## Requirements
-
-Using this plugin requires having the [WPGraphQL plugin](https://github.com/wp-graphql/wp-graphql) installed and activated.
+- PHP >= 7.1
+- WordPress >= 5.0
+- [WPGraphQL]((https://github.com/wp-graphql/wp-graphql)) >= 1.0.0
 
 ## Activating / Using
 
