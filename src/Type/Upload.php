@@ -56,7 +56,7 @@ class Upload
      */
     public static function serialize($value)
     {
-        throw new InvariantViolation('`Upload` cannot be serialized');
+        throw new InvariantViolation(__('`Upload` cannot be serialized', 'wp-graphql-upload'));
     }
 
     /**
@@ -68,7 +68,12 @@ class Upload
     public static function parseValue($value)
     {
         if (!static::arrayKeysExist($value, static::$validationFileKeys)) {
-            throw new UnexpectedValueException('Could not get uploaded file, be sure to conform to GraphQL multipart request specification. Instead got: ' . Utils::printSafe($value));
+            throw new UnexpectedValueException(
+                sprintf(
+                    __('Could not get uploaded file, be sure to conform to GraphQL multipart request specification. Instead got: %s', 'wp-graphql-upload'),
+                    Utils::printSafe($value)
+                )
+            );
         }
 
         // If not supplied, use the server's temp directory.
@@ -95,7 +100,13 @@ class Upload
      */
     public static function parseLiteral($value, array $variables = null)
     {
-        throw new Error('`Upload` cannot be hardcoded in query, be sure to conform to GraphQL multipart request specification. Instead got: ' . $value->kind, $value);
+        throw new Error(
+            sprintf(
+                __('`Upload` cannot be hardcoded in query, be sure to conform to GraphQL multipart request specification. Instead got: %s', 'wp-graphql-upload'),
+                $value->kind,
+                $value
+            )
+        );
     }
 
     /**

@@ -39,7 +39,7 @@ class BodyParser
 
         if ('POST' === $requestContext['method'] && stripos($contentType, 'multipart/form-data') !== false) {
             if (empty($bodyParams['map'])) {
-                throw new RequestError('The request must define a `map`');
+                throw new RequestError(__('The request must define a `map`', 'wp-graphql-upload'));
             }
 
             $decodeJson = static function ($json) {
