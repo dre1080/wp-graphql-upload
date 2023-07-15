@@ -81,6 +81,44 @@ class BodyParserTest extends \WP_UnitTestCase
         BodyParser::processRequest([], ['method' => 'POST']);
     }
 
+    public function testMissingFileShouldThrows(): void
+    {
+        $query = '{my query}';
+        $variables = [
+            'test' => 1,
+            'test2' => 2,
+            'uploads' => [
+                0 => null,
+                1 => null,
+            ],
+        ];
+        $map = [
+            1 => ['variables.uploads.0'],
+            2 => ['variables.uploads.1'],
+        ];
+
+        $file1 = ['name' => 'image.jpg', 'type' => 'image/jpeg', 'size' => 1455000, 'tmp_name' => '/tmp/random'];
+        $_FILES = [
+            1 => $file1,
+        ];
+
+        $params = [
+            'operations' => json_encode([
+                'query' => $query,
+                'variables' => $variables,
+                'operation_name' => 'testUpload',
+            ]),
+            'map' => json_encode($map),
+        ];
+
+        $_SERVER['CONTENT_TYPE'] = 'multipart/form-data';
+
+        $this->expectException(RequestError::class);
+        $this->expectExceptionMessage('The uploaded file was not found in the specified location `variables.uploads.1`');
+
+        BodyParser::processRequest($params, ['method' => 'POST']);
+    }
+
     public function testOtherContentTypeShouldNotBeTouched(): void
     {
         $_SERVER['CONTENT_TYPE'] = 'application/json';

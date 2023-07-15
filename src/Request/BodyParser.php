@@ -26,6 +26,7 @@ class BodyParser
      * Based on the GraphQL multipart request specification.
      *
      * @see https://github.com/jaydenseric/graphql-multipart-request-spec
+     * @see https://github.com/Ecodev/graphql-upload/blob/73a63038455e5fb5aa6c3f0e41a06208c45e8539/src/UploadMiddleware.php#L27
      *
      * @param array $bodyParams     The parsed body parameters.
      * @param array $requestContext The GraphQL request context.
@@ -62,6 +63,17 @@ class BodyParser
                         }
 
                         $items = &$items[$key];
+                    }
+
+                    // Throw an error if the file wasnt found in the location specified in the map
+                    if (! array_key_exists($fileKey, $_FILES)) {
+                        throw new RequestError(
+                            sprintf(
+                                // translators: %s is the location of the file
+                                __('The uploaded file was not found in the specified location `%s`', 'wp-graphql-upload'),
+                                $location
+                            )
+                        );
                     }
 
                     $items = $_FILES[$fileKey];
