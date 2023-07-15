@@ -32,7 +32,7 @@ class Upload
             $typeRegistry->register_scalar('Upload', [
                 'description'  => sprintf(
                     // translators: %s is a link to the graphql-multipart-request-spec repo
-                    __( 'The `Upload` special type represents a file to be uploaded in the same HTTP request as specified by [graphql-multipart-request-spec](%s).', 'wp-graphql-upload' ),
+                    __('The `Upload` special type represents a file to be uploaded in the same HTTP request as specified by [graphql-multipart-request-spec](%s).', 'wp-graphql-upload'),
                     'https://github.com/jaydenseric/graphql-multipart-request-spec'
                 ),
                 'serialize'    => static function ($value) {
@@ -73,8 +73,8 @@ class Upload
 
         // If not supplied, use the server's temp directory.
         if (empty($value['tmp_name'])) {
-          $tmp_dir = get_temp_dir();
-          $value['tmp_name'] = $tmp_dir . wp_unique_filename($tmp_dir, $value['name']);
+            $tmp_dir = get_temp_dir();
+            $value['tmp_name'] = $tmp_dir . wp_unique_filename($tmp_dir, $value['name']);
         }
 
         return $value;

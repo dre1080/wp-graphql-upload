@@ -35,7 +35,7 @@ class BodyParser
      */
     public static function processRequest(array $bodyParams, array $requestContext)
     {
-        $contentType = isset($_SERVER['CONTENT_TYPE']) ? sanitize_text_field( wp_unslash( $_SERVER['CONTENT_TYPE'] ) ) : '';
+        $contentType = isset($_SERVER['CONTENT_TYPE']) ? sanitize_text_field(wp_unslash($_SERVER['CONTENT_TYPE'])) : '';
 
         if ('POST' === $requestContext['method'] && stripos($contentType, 'multipart/form-data') !== false) {
             if (empty($bodyParams['map'])) {
