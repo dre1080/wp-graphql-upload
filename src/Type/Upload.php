@@ -32,7 +32,7 @@ class Upload
             $typeRegistry->register_scalar('Upload', [
                 'description'  => sprintf(
                     // translators: %s is a link to the graphql-multipart-request-spec repo
-                    __( 'The `Upload` special type represents a file to be uploaded in the same HTTP request as specified by [graphql-multipart-request-spec](%s).', 'wp-graphql-upload' ),
+                    __('The `Upload` special type represents a file to be uploaded in the same HTTP request as specified by [graphql-multipart-request-spec](%s).', 'wp-graphql-upload'),
                     'https://github.com/jaydenseric/graphql-multipart-request-spec'
                 ),
                 'serialize'    => static function ($value) {
@@ -56,7 +56,7 @@ class Upload
      */
     public static function serialize($value)
     {
-        throw new InvariantViolation('`Upload` cannot be serialized');
+        throw new InvariantViolation(__('`Upload` cannot be serialized', 'wp-graphql-upload'));
     }
 
     /**
@@ -68,13 +68,18 @@ class Upload
     public static function parseValue($value)
     {
         if (!static::arrayKeysExist($value, static::$validationFileKeys)) {
-            throw new UnexpectedValueException('Could not get uploaded file, be sure to conform to GraphQL multipart request specification. Instead got: ' . Utils::printSafe($value));
+            throw new UnexpectedValueException(
+                sprintf(
+                    __('Could not get uploaded file, be sure to conform to GraphQL multipart request specification. Instead got: %s', 'wp-graphql-upload'),
+                    Utils::printSafe($value)
+                )
+            );
         }
 
         // If not supplied, use the server's temp directory.
         if (empty($value['tmp_name'])) {
-          $tmp_dir = get_temp_dir();
-          $value['tmp_name'] = $tmp_dir . wp_unique_filename($tmp_dir, $value['name']);
+            $tmp_dir = get_temp_dir();
+            $value['tmp_name'] = $tmp_dir . wp_unique_filename($tmp_dir, $value['name']);
         }
 
         return $value;
@@ -95,7 +100,13 @@ class Upload
      */
     public static function parseLiteral($value, array $variables = null)
     {
-        throw new Error('`Upload` cannot be hardcoded in query, be sure to conform to GraphQL multipart request specification. Instead got: ' . $value->kind, $value);
+        throw new Error(
+            sprintf(
+                __('`Upload` cannot be hardcoded in query, be sure to conform to GraphQL multipart request specification. Instead got: %s', 'wp-graphql-upload'),
+                $value->kind,
+                $value
+            )
+        );
     }
 
     /**

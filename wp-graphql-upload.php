@@ -7,7 +7,7 @@
  * or newer.
  * Author: ando
  * Author URI: http://github.com/dre1080
- * Version: 0.1.4
+ * Version: 0.1.5
  * Requires at least: 5.0
  * Tested up to: 6.2.2
  * Requires PHP: 7.1
@@ -17,7 +17,7 @@
  * @package  WPGraphQL\Upload
  * @category WPGraphQL
  * @author   ando
- * @version  0.1.4
+ * @version  0.1.5
  */
 
 namespace WPGraphQL;

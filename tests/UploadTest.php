@@ -24,7 +24,7 @@ class UploadTest extends \WP_UnitTestCase
         $this->assertEquals($file['name'], $actual['name']);
         $this->assertEquals($file['type'], $actual['type']);
         $this->assertEquals($file['size'], $actual['size']);
-        $this->assertStringContainsString(get_temp_dir(),$actual['tmp_name']);
+        $this->assertStringContainsString(get_temp_dir(), $actual['tmp_name']);
     }
 
     public function testCannotParseNonUploadedFileInstance(): void

@@ -7,7 +7,7 @@ use WPGraphQL\Upload\Request\BodyParser;
 
 class BodyParserTest extends \WP_UnitTestCase
 {
-    public function tearDown() : void
+    public function tearDown(): void
     {
         unset($_SERVER['CONTENT_TYPE'], $_FILES);
     }
