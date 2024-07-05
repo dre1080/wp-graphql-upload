@@ -11,6 +11,7 @@
  * Requires at least: 5.0
  * Tested up to: 6.2.2
  * Requires PHP: 7.1
+ * Requires Plugins: wp-graphql
  * License: MIT
  * License URI: http://opensource.org/licenses/mit-license.html
  *
